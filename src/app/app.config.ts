@@ -11,6 +11,8 @@ import { errorInterceptor } from './core/interceptors/Error/error-interceptor';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxPaginationModule } from 'ngx-pagination';
 import { loadingInterceptor } from './core/interceptors/loading-interceptor';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -22,5 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom(CookieService),
     provideToastr(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+
   ]
 };
