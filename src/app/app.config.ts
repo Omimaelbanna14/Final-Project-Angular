@@ -24,7 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom(CookieService),
     provideToastr(),
-    // { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
 
   ]
 };
