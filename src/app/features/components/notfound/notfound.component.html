@@ -1,0 +1,14 @@
+<section class="w-full min-h-[calc(100vh-120px)] flex flex-col items-center justify-center p-4 bg-gray-50">
+  <div class="mb-6 max-w-xs w-full">
+    <img src="./images/error.svg" alt="Not Found" class="w-full h-auto object-contain">
+  </div>
+  <div class="text-center mb-6">
+    <h1 class="text-3xl font-bold text-emerald-500 mb-2">Oops! Page not found</h1>
+    <p class="text-gray-600 text-lg">The page you are looking for does not exist.</p>
+  </div>
+
+  <button (click)="goHome()" 
+          class="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition">
+    Go Back Home
+  </button>
+</section>

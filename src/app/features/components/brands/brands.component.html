@@ -1,0 +1,28 @@
+<section class="main-section">
+
+    <div class="container-auto overflow-hidden">
+        <h1 class="section-head text-center font-bold text-3xl text-emerald-500 mb-6 py-3"> All Brands </h1>
+
+
+
+        <div class="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 p-5">
+            @for( brand of allBrands; track brand._id ){
+
+            <div class="outter p-3">
+                <div class="brand-card group bg-white border rounded cursor-pointer shadow-md transition transform duration-500 hover:shadow-lg group-hover:bg-emerald-500 group-hover:focus:bg-emerald-600 text-center hover:scale-105 "
+                    [routerLink]="['/br-details' , brand._id]" (click)="openBrand(brand._id)">
+                    <div class="overflow-hidden h-60 ">
+                        <img [src]="brand.image" class="w-full block object-contain" [alt]="brand.slug">
+
+                    </div>
+
+                    <div class="text-center">
+                        <h1 class="text-emerald-500 text-lg font-semibold text-center">{{brand.name}} </h1>
+                    </div>
+                </div>
+            </div>
+
+            }
+        </div>
+    </div>
+</section>

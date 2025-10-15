@@ -1,0 +1,35 @@
+<section class="main-section">
+
+    <div class="container-auto">
+        <h1 class="section-head my-3">Shop Cart</h1>
+        <h3 class="font-black text-2xl text-emerald-500 my-3"> Total cart price {{cartData.totalCartPrice}} </h3>
+        @for(cartItem of cartData.products ; track cartItem.product._id){
+        <div class="flex flex-wrap items-center justify-between border-b-2 border-e-neutral-400 my-3">
+            <div class="w-full lg:w-1/6 ">
+                <img [src]="cartItem.product.imageCover" class="w-full block" alt="">
+            </div>
+            <div class="w-full lg:w-2/4 ">
+                <h1 class="font-bold text-2xl text-emerald-600 my-4"> {{cartItem.product.title}} </h1>
+                <h2 class="font-bold text-xl text-emerald-500 my-4"> {{cartItem.price}} EGP</h2>
+                <h6 (click)="deleteProduct(cartItem.product._id)" class="cursor-pointer text-2xl font-bold text-red-500 my-4 w-full lg:w-1/2 justify-center flex flex-wrap lg:justify-between items-center"> <span>Remove item from cart</span> <i class="fa fa-trash-can"></i> </h6>
+            </div>
+            <div class="w-full lg:w-1/12 ">
+                <div
+                    class="flex flex-wrap justify-evenly lg:justify-between items-center text-2xl text-emerald-400 font-bold">
+                    <i (click)="changeCount(cartItem.product._id , cartItem.count + 1)" class="fa fa-plus-circle cursor-pointer"></i>
+                    <h3> {{cartItem.count}} </h3>
+                    @if(cartItem.count > 1){ <i (click)="changeCount(cartItem.product._id , cartItem.count - 1)" class="fa fa-minus-circle cursor-pointer"></i>}
+                </div>
+
+            </div>
+
+        </div>
+        }
+
+        @if(cartData.products.length > 0){<button (click)="clearCart()" class="font-bold cursor-pointer my-3 p-3 w-full block bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-full shadow-md duration-500">Clear Your Cart</button>}
+        @if(cartData.products.length > 0){<button [routerLink]="['/checkout' ,cartData._id]" class="main-btn">Check out</button>}
+
+    </div>
+
+
+</section>

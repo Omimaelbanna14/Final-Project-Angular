@@ -1,0 +1,51 @@
+<section class="main-section">
+
+    <app-main-slider></app-main-slider>
+
+</section>
+
+<section class="main-section">
+
+    <app-categories-slider></app-categories-slider>
+
+</section>
+
+<section class="main-section">
+
+    <div class="container-auto">
+        <h1 class="section-head text-center"> Popular Products </h1>
+
+
+        <input [(ngModel)]="fromInput" type="text"
+            class="w-1/2 block mx-auto rounded-2xl p-5 focus:transition-all focus:duration-500 focus:border-2 focus:border-emerald-500"
+            placeholder="Search..." name="" id="">
+
+
+        <div class="grid sm:grid-cols-1  md:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+            @for( product of products.slice(0,15) |search : fromInput; track product._id ){
+            <div class="outter p-3">
+                <div class="product p-2 group">
+                    <div [routerLink]="['/p_details' , product._id]">
+                        <div>
+                            <img [src]="product.imageCover" class="w-full block rounded-md" [alt]="product.title">
+                        </div>
+                        <h3 class="text-emerald-700 font-extrabold py-2">{{product.category.name}} </h3>
+                        <h1 class="text-emerald-500 font-medium py-2 ">{{product.title.split(' ' , 3).join(' ')}} </h1>
+
+                        <div class="flex justify-between items-center">
+                            <span>{{product.price}} EGP</span>
+                            <span><i class="fas fa-star rating-color"></i>{{product.ratingsAverage}}</span>
+                        </div>
+                        <i class="fa fa-heart cursor-pointer text-xl mt-2"
+                            [ngClass]="product.inwishlist ? 'text-red-600' : 'text-black'"
+                            (click)="toggleWishList(product)"></i>
+                    </div>
+                    <button (click)="addToCart(product._id)"
+                        class="main-btn translate-y-[150%] group-hover:translate-y-0 duration-500">Add to Cart
+                        +</button>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</section>

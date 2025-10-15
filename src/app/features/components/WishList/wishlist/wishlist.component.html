@@ -1,0 +1,45 @@
+<section class="main-section">
+    <div class="container-auto py-10">
+        <h1 class="text-emerald-500 text-center font-bold text-4xl mb-8">Favorite Products List</h1>
+        <div *ngIf="wishListProducts.length > 0; else emptyState"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+            <div *ngFor="let product of wishListProducts"
+                class="bg-gradient-to-b from-white via-emerald-50 to-white shadow-xl rounded overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl w-full max-w-[260px]">
+                <div class="relative group overflow-hidden rounded">
+                    <img [src]="product.imageCover"
+                        class="w-full h-70 object-cover transition-transform duration-500 group-hover:scale-110"
+                        [alt]="product.title">
+                    <i
+                        class="fa fa-heart absolute top-3 right-3 text-2xl text-red-500 cursor-pointer hover:scale-125 transition-transform duration-300"></i>
+                </div>
+                <div class="p-5 text-center">
+                    <h2
+                        class="text-lg font-semibold text-gray-800 mb-2 truncate hover:text-emerald-600 transition-colors duration-300">
+                        {{product.title}}
+                    </h2>
+                    <p class="text-emerald-500 font-bold text-lg mb-4">{{product.price}} EGP</p>
+                        <div class="">
+                            <i class="fas fa-star rating-color"></i>
+                            {{product.ratingsAverage}}
+                        </div>
+
+
+                        <div class="flex flex-col gap-4 group w-full max-w-xs">
+                            <button (click)="addToCart(product._id)"
+                                class="main-btn w-full transform translate-x-[150%] group-hover:translate-x-0 duration-500">Add
+                                to Cart +</button>
+                            <button (click)="removeFromWishList(product._id)"
+                                class="w-full font-bold cursor-pointer my-3 p-3 rounded-3xl block bg-red-500 hover:bg-red-600 text-white py-2 px-6 duration-500 -translate-x-[150%] transform group-hover:translate-x-0 ">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #emptyState>
+                <div class="text-center mt-10 py-20">
+                    <p class="text-center text-gray-400 text-lg mt-10">Your WishList Is Empty</p>
+                </div>
+            </ng-template>
+        </div>
+
+
+</section>

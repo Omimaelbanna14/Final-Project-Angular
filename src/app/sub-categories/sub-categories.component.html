@@ -1,0 +1,35 @@
+<section class="main-section">
+    <div class="container-auto">
+
+        <div *ngIf="products && products.length  > 0; else noProducts"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            @for (product of products; track product._id) {
+            <div class="outter p-3">
+                <div class="product p-3 group">
+                    <div>
+                        <div>
+                            <img [src]="product.imageCover" class="w-full block rounded-md" [alt]="product.title">
+                        </div>
+                        <h1 class="text-emerald-400 py-2">{{product.category.name}}</h1>
+                        <h2 class="text-black font-medium py-1">{{product.title.split(' ' , 3).join(' ')}}</h2>
+                        <div class="flex justify-between items-center">
+                            <span>{{product.price}} EGP</span>
+                            <span><i class="fas fa-star text-yellow-500"></i>{{product.ratingsAverage}}</span>
+                        </div>
+                        <i class="fa fa-heart cursor-pointer text-xl mt-2"
+                            [ngClass]="product.inwishlist ? 'text-red-600' : 'text-black'"
+                            (click)="toggleWishList(product)"></i>
+                    </div>
+                    <button (click)="addToCart(product._id)"
+                        class="main-btn translate-y-[150%] group-hover:translate-y-0 duration-500">Add to
+                        Cart</button>
+                </div>
+            </div>
+            }
+        </div>
+        <ng-template #noProducts>
+            <p class="text-center text-gray-500 text-lg py-6">There are no products currently available</p>
+        </ng-template>
+    </div>
+
+</section>

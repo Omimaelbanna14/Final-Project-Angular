@@ -1,0 +1,51 @@
+<section class="main-section">
+
+
+    <div class="container-auto">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+            @for (category of allCategories; track category._id) {
+
+            <div (click)="showSubCategories(category._id, category.name)" class="category-card border rounded-lg shadow-sm transition cursor-pointer bg-white hover:shadow-emerald-300
+             hover:shadow-md hover:border-emerald-500 hover:scale-105 duration-300 border-gray-200 overflow-hidden">
+
+                <div class="w-full h-[300px] overflow-hidden">
+                    <img [src]="category.image" [alt]="category.slug" class="w-full h-full object-cover">
+
+                </div>
+                <div class="p-4">
+                    <p class="text-center text-emerald-600 font-bold text-xl">
+                        {{ category.name }}
+                    </p>
+                </div>
+            </div>
+            }
+        </div>
+
+        <h1 *ngIf="categoryTitle" class="text-emerald-500 text-center font-bold text-4xl mb-6 py-3">
+            {{ categoryTitle }} subcategories
+        </h1>
+
+
+        <div *ngIf="selectedSubCategories  && selectedSubCategories .length > 0; else noSubCategories"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+
+
+            @for (sub of selectedSubCategories; track sub._id) {
+
+            <div class="card border rounded-lg shadow-sm transition cursor-pointer bg-emerald-100 p-4 flex items-center 
+            justify-center hover:shadow-md hover:text-emerald-500 hover:scale-105 duration-300 overflow-hidden"
+                [routerLink]="['/subcategory', sub._id]">
+
+                <h3 class="text-gray-700 font-medium text-base">{{sub.name}}</h3>
+
+            </div>
+            }
+        </div>
+
+        <ng-template #noSubCategories>
+            <p *ngIf="selectedSubCategories?.length === 0" class="text-center text-gray-500 text-lg py-6">There are no sub-Categories currently</p>
+        </ng-template>
+    </div>
+
+</section>
